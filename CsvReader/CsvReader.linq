@@ -4,7 +4,7 @@
 
 void Main()
 {
-	var csvReader = new CsvReader("C:\Temp\SampleData.csv");
+	var csvReader = new CsvReader(@"C:\Temp\SampleData.csv");
 	var personList = csvReader.GetObjects(); 
 	
 }
@@ -30,7 +30,7 @@ public class CsvReader
 	
 	public List<Person> GetObjects()
 	{
-		var reader = new StreamReader(File.OpenRead(
+		var reader = new StreamReader(File.OpenRead(_fullFileName));
 	}
 
 }
