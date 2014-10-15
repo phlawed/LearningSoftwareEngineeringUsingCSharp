@@ -36,6 +36,8 @@ public class CsvReader
 	{
 		var personList = new List<Person>();
 		var reader = new StreamReader(File.OpenRead(_fullFileName));
+		
+		var headerLine = reader.ReadLine();
 
 		while (!reader.EndOfStream)
 		{
