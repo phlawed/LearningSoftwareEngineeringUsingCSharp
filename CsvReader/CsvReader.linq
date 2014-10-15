@@ -6,6 +6,11 @@ void Main()
 {
 	var csvReader = new CsvReader(@"C:\Temp\SampleData.csv");
 	var personList = csvReader.GetObjects(); 
+
+	foreach(var person in personList)
+	{
+		Console.WriteLine("FirstName = {0), LastName = {1}, State = {2}", person.FirstName, person.LastName, person.State);
+	}
 }
 
 public class Person
