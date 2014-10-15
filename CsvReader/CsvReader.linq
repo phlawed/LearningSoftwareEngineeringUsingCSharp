@@ -19,8 +19,19 @@ public class Person
 }
 
 
-
-public List<Person> GetObjects()
+public class CsvReader
 {
-    //Implement this method. 
+	private string _fullFileName { get; set; } 
+	
+	public CsvReader(string fullFileName)
+	{
+		_fullFileName = fullFileName;
+	}
+	
+	public List<Person> GetObjects()
+	{
+		var reader = new StreamReader(File.OpenRead(
+	}
+
 }
+
