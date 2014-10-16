@@ -6,10 +6,15 @@ void Main()
 {
 	var csvReader = new CsvReader(@"C:\Temp\SampleData.csv");
 	var personList = csvReader.GetObjects(); 
+	var personType = typeof(Person);
+	var properties = personType.GetProperties(BindingFlags.Public|BindingFlags.Instance);
+	
+	Console.WriteLine(properties.Count());
 
 	foreach(var person in personList)
 	{
-		Console.WriteLine("FirstName = {0}, LastName = {1}, State = {2}, BlogStartDate = {3}, BirthYear = {4}, Awesomeness = {5}", person.FirstName, person.LastName, person.State, person.BlogStartDate, person.BirthYear, person.Awesomeness);
+		Console.Write(string.Join(",", properties.Select(x => x.Name)));
+		Console.WriteLine();
 	}
 }
 
