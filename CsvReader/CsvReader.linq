@@ -9,8 +9,6 @@ void Main()
 	var personType = typeof(Person);
 	var properties = personType.GetProperties(BindingFlags.Public|BindingFlags.Instance);
 	
-	Console.WriteLine(properties.Count());
-
 	foreach(var person in personList)
 	{
 		foreach(var property in properties)
