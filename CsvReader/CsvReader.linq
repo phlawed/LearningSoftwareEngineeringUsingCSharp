@@ -9,7 +9,7 @@ void Main()
 
 	foreach(var person in personList)
 	{
-		Console.WriteLine("FirstName = {0}, LastName = {1}, State = {2}", person.FirstName, person.LastName, person.State);
+		Console.WriteLine("FirstName = {0}, LastName = {1}, State = {2}, BlogStartDate = {3}, BirthYear = {4}, Awesomeness = {5}", person.FirstName, person.LastName, person.State, person.BlogStartDate, person.BirthYear, person.Awesomeness);
 	}
 }
 
@@ -20,6 +20,12 @@ public class Person
     public string LastName { get; set; }
 
     public string State { get; set; }
+
+	public DateTime BlogStartDate { get; set; }
+
+    public int BirthYear { get; set; }
+
+    public int Awesomeness { get; set; }
 }
 
 
@@ -43,11 +49,31 @@ public class CsvReader
 		{
 			var line = reader.ReadLine();
 			var values = line.Split(',');
+			
+			var firstName = values[0];
+			var lastName = values[1];
+			var state = values[2];
+			
+			DateTime blogStartDate;
+			DateTime.TryParse(values[3], out blogStartDate);
 
-			personList.Add(new Person{FirstName=values[0], LastName=values[1], State=values[2]});
+			int birthYear;
+			Int32.TryParse(values[4], out birthYear);
+
+			int awesomeness;
+			Int32.TryParse(values[5], out awesomeness);
+
+			personList.Add(new Person
+								{
+									FirstName = firstName, 
+									LastName = lastName, 
+									State = state,
+									BlogStartDate = blogStartDate,
+									BirthYear = birthYear,
+									Awesomeness = awesomeness
+								});
 		}
 
 		return personList;
 	}
 }
-
