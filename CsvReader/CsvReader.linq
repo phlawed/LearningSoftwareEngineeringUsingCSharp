@@ -13,7 +13,10 @@ void Main()
 
 	foreach(var person in personList)
 	{
-		Console.Write(string.Join(",", properties.Select(x => x.Name)));
+		foreach(var property in properties)
+		{
+			Console.Write("{0} = {1}; ", property.Name, property.GetValue(person, null));
+		}
 		Console.WriteLine();
 	}
 }
