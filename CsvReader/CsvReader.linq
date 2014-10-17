@@ -11,10 +11,7 @@ void Main()
 	
 	foreach(var person in personList)
 	{
-		foreach(var property in properties)
-		{
-			Console.Write("{0} = {1}; ", property.Name, property.GetValue(person, null));
-		}
+		Console.Write(string.Join(";", properties.Select(x => string.Format("{0} = {1}", x.Name, x.GetValue(person, null)))));
 		Console.WriteLine();
 	}
 }
