@@ -35,17 +35,17 @@ public class Person
 
 public class CsvReader
 {
-	private string _fullFileName { get; set; } 
+	private string FilePath { get; set; } 
 	
-	public CsvReader(string fullFileName)
+	public CsvReader(string filePath)
 	{
-		_fullFileName = fullFileName;
+		FilePath = filePath;
 	}
 	
 	public List<Person> GetObjects()
 	{
 		var personList = new List<Person>();
-		var reader = new StreamReader(File.OpenRead(_fullFileName));
+		var reader = new StreamReader(File.OpenRead(FilePath));
 		
 		var headerLine = reader.ReadLine();
 
