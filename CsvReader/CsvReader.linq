@@ -4,7 +4,8 @@
 
 void Main()
 {
-	var csvReader = new CsvReader(@"C:\Temp\SampleData.csv");
+	var filePath = @"C:\Temp\SampleData.csv";
+	var csvReader = new CsvReader(filePath);
 	var personList = csvReader.GetObjects(); 
 	var personType = typeof(Person);
 	var properties = personType.GetProperties(BindingFlags.Public|BindingFlags.Instance);
