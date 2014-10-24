@@ -19,7 +19,8 @@ void Main()
 	
 	foreach(var person in personList)
 	{
-		Console.Write(string.Join(";", properties.Select(x => string.Format("{0} = {1}", x.Name, x.GetValue(person, null)))));
+		var nonEmptyProperties = properties.Where(x => !string.IsNullOrEmpty(x.GetValue(person, null).ToString()));
+		Console.Write(string.Join(";", nonEmptyProperties.Select(x => string.Format("{0} = {1}", x.Name, x.GetValue(person, null)))));
 		Console.WriteLine();
 	}
 }
