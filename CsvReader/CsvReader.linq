@@ -6,6 +6,13 @@ void Main()
 {
 	var filePath = @"C:\Temp\SampleData.csv";
 	var csvReader = new CsvReader(filePath);
+
+	if(!csvReader.FilePathValidated)
+	{
+		Console.WriteLine("File not found: {0}", filePath);
+		return;
+	}
+
 	var personList = csvReader.GetObjects(); 
 	var personType = typeof(Person);
 	var properties = personType.GetProperties(BindingFlags.Public|BindingFlags.Instance);
@@ -37,9 +44,12 @@ public class CsvReader
 {
 	private string FilePath { get; set; } 
 	
+	public bool FilePathValidated { get; private set; }
+	
 	public CsvReader(string filePath)
 	{
 		FilePath = filePath;
+		FilePathValidated = File.Exists(FilePath);
 	}
 	
 	public List<Person> GetObjects()
