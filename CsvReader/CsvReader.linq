@@ -14,6 +14,13 @@ void Main()
 	}
 
 	var personList = csvReader.GetObjects(); 
+	
+	if(personList == null || personList.Count == 0)
+	{
+		Console.WriteLine("No data returned.");
+		return;
+	}
+
 	var personType = typeof(Person);
 	var properties = personType.GetProperties(BindingFlags.Public|BindingFlags.Instance);
 	
