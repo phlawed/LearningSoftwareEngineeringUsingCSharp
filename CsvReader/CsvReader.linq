@@ -56,37 +56,45 @@ public class CsvReader
 	public List<Person> GetObjects()
 	{
 		var personList = new List<Person>();
+
 		var reader = new StreamReader(File.OpenRead(FilePath));
-		
 		var headerLine = reader.ReadLine();
 
 		while (!reader.EndOfStream)
 		{
+			var person = new Person();
+
 			var line = reader.ReadLine();
 			var values = line.Split(',');
 			
 			var firstName = values[0];
+			person.FirstName = firstName;
+			
 			var lastName = values[1];
+			person.LastName = lastName;
+
 			var state = values[2];
+			person.State = state;
 			
 			DateTime blogStartDate;
-			DateTime.TryParse(values[3], out blogStartDate);
+			if(DateTime.TryParse(values[3], out blogStartDate))
+			{
+				person.BlogStartDate = blogStartDate;
+			}
 
 			int birthYear;
-			Int32.TryParse(values[4], out birthYear);
+			if(Int32.TryParse(values[4], out birthYear))
+			{
+				person.BirthYear = birthYear;
+			}
 
 			int awesomeness;
-			Int32.TryParse(values[5], out awesomeness);
-
-			personList.Add(new Person
-								{
-									FirstName = firstName, 
-									LastName = lastName, 
-									State = state,
-									BlogStartDate = blogStartDate,
-									BirthYear = birthYear,
-									Awesomeness = awesomeness
-								});
+			if(Int32.TryParse(values[5], out awesomeness))
+			{
+				person.Awesomeness = awesomeness;
+			}
+			
+			personList.Add(person);
 		}
 
 		return personList;
